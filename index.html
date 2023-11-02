@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Searchy</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+      </style> 
+      
+  </head>
+  <body>
+    <header>🔎 Searchy</header>
+    <main>
+      <div id="grid"></div>
+      <div id="sidebar">
+        <div id="controllers">
+          <h3>Controllers</h3>
+          <div class="controller">
+            <label for="rows-controller">Rows</label>
+            <input
+              type="range"
+              id="rows-controller"
+              name="rows-controller"
+              min="15"
+              max="35"
+              step="2"
+            />
+          </div>
+          <div class="controller">
+            <label for="columns-controller">Columns</label>
+            <input
+              type="range"
+              id="columns-controller"
+              name="columns-controller"
+              min="15"
+              max="35"
+              step="2"
+            />
+          </div>
+          <div class="controller">
+            <button id="maze-generation-button">GENERATE MAZE</button>
+          </div>
+          <div class="controller">
+            <button id="search-start-button">START</button>
+          </div>
+          <div class="controller">
+            <label for="algorithm-controller">Algorithm:</label>
+            <select
+              id="algorithm-controller"
+              name="algorithm-controller"
+            ></select>
+          </div>
+        </div>
+        <div id="game-stats">
+          <h3>Last Search Results</h3>
+          <div id="stats">
+            <span id="empty-stats-placeholder" title="Nothing here...">🥱</span>
+            <ul id="stats-data" class="not-visible">
+              <li id="stat-algorithm">
+                <strong class="stat-label">Algorithm &#8594;</strong
+                ><span id="stat-value"></span>
+              </li>
+              <li id="stat-steps">
+                <strong class="stat-label"># Steps &#8594;</strong
+                ><span id="stat-value"></span>
+              </li>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </main>
+    <footer>Made with 💙 AI Fundamentals</footer>
+    <script type="module" src="/src/js/main.ts"></script>
+  </body>
+</html>
