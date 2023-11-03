@@ -34,6 +34,7 @@ export interface SearchState {
   walls?: Map<string, boolean>;
   selectedAlgorithm: Algorithms;
   solutionPath?: string[];
+  elapsedTime?: number;
   steps: {
     playerPosition: string;
     goalPosition: string;

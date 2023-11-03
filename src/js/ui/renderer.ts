@@ -112,11 +112,14 @@ class Renderer {
 
   public drawSearchStats = () => {
     const algorithmStats = document.getElementById("stat-algorithm");
-    algorithmStats!.querySelector("span")!.textContent =
+    algorithmStats!.querySelector(".stat-value")!.textContent =
       this.problem.searchState.selectedAlgorithm;
     const stepsStats = document.getElementById("stat-steps");
-    stepsStats!.querySelector("span")!.textContent =
+    stepsStats!.querySelector(".stat-value")!.textContent =
       this.problem.searchState.steps.length.toString();
+    const timeStats = document.getElementById("stat-time");
+    timeStats!.querySelector(".stat-value")!.textContent =
+      `${(this.problem.searchState.elapsedTime! / 1000).toFixed(2)}s` ?? "N/A";
     document.getElementById("stats-data")?.classList.remove("not-visible");
     document
       .getElementById("empty-stats-placeholder")

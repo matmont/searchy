@@ -3,6 +3,7 @@ import { FrontierNode, SearchState } from "../problem/types";
 self.onmessage = (e) => {
   try {
     const startingSearchState = e.data as SearchState;
+    const startingTime = performance.now();
     const {
       selectedAlgorithm,
       startingPlayerPosition,
@@ -49,6 +50,7 @@ self.onmessage = (e) => {
           payload: {
             ...startingSearchState,
             solutionPath,
+            elapsedTime: performance.now() - startingTime,
             steps,
           } as SearchState,
         });
