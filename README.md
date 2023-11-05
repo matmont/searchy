@@ -7,7 +7,7 @@
 
 This simple project has been developed as part of my studies in the Artificial Intelligence Master's Degree in Pisa, during the lectures of the Artificial Intelligence Fundamentals course. My willingness is to open source this and try to continuously improve and evolve it to support less trivial scenarios. You can find the theory of those concepts in the [2.3 Chapter of the AIMA (Artificial Intelligence: A Modern Approach, 4th ed.)](https://aima.cs.berkeley.edu/).
 
-You can play with it [here](https://searchy-aif.netlify.app/).
+You can play with it [here](https://searchy-aif.netlify.app/). Take a look at this [blog post](https://mmont.dev/blog/problem-solving-agents) too.
 
 ![Searchy Screenshot](public/media/searchy-screenshot.png)
 
