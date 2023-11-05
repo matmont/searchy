@@ -25,6 +25,7 @@ To start the project locally
   cd searchy
   pnpm install
   pnpm run dev
+  npx tailwindcss -i ./src/style.css -o ./dist/style.css --watch
 ```
 
 ## To Do

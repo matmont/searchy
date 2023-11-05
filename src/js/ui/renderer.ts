@@ -108,6 +108,12 @@ class Renderer {
       if (!cell) return;
       cell.classList.add("solution");
     });
+    if (!!this.problem.searchState.startingPlayerPosition) {
+      const startingPlayerCell = document.getElementById(
+        this.problem.searchState.startingPlayerPosition
+      );
+      startingPlayerCell?.classList.add("player");
+    }
   };
 
   public drawSearchStats = () => {

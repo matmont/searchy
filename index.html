@@ -9,12 +9,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Searchy</title>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-      </style> 
-        <link href="/dist/style.css" rel="stylesheet">
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+    </style>
+    <link href="/dist/style.css" rel="stylesheet" />
   </head>
   <body>
-    <header class="shadow-md py-2 px-2"><h1 class="text-2xl font-bold">🔎 Searchy</h1></header>
+    <header class="shadow-md py-2 px-2">
+      <h1 class="text-2xl font-bold">🔎 Searchy</h1>
+    </header>
     <main class="p-4">
       <div id="grid"></div>
       <div id="sidebar" class="shadow-lg rounded-lg">
@@ -45,10 +47,17 @@
             />
           </div>
           <div class="controller">
-            <button class="btn btn-secondary btn-sm" id="maze-generation-button">GENERATE MAZE</button>
+            <button
+              class="btn btn-secondary btn-sm"
+              id="maze-generation-button"
+            >
+              GENERATE MAZE
+            </button>
           </div>
           <div class="controller">
-            <button class="btn btn-primary btn-sm" id="search-start-button">START</button>
+            <button class="btn btn-primary btn-sm" id="search-start-button">
+              START
+            </button>
           </div>
           <div class="controller">
             <label for="algorithm-controller">Algorithm:</label>
@@ -59,12 +68,40 @@
             ></select>
           </div>
         </div>
+        <div id="legend">
+          <h3>Legend</h3>
+          <div class="flex items-center gap-2">
+            <div class="player h-8 w-8 rounded-md"></div>
+            <div class="flex-1">Initial State</div>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="goal h-8 w-8 rounded-md"></div>
+            <div class="flex-1">Goal State</div>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="wall h-8 w-8 rounded-md"></div>
+            <div class="flex-1">Wall</div>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="visited h-8 w-8 rounded-md"></div>
+            <div class="flex-1">Visited Node</div>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="solution h-8 w-8 rounded-md"></div>
+            <div class="flex-1">Solution Path</div>
+          </div>
+        </div>
         <div id="game-stats">
           <h3>Last Search Results</h3>
           <div id="stats">
-            <span id="empty-stats-placeholder" class="not-visible" title="Nothing here...">🥱</span>
+            <span
+              id="empty-stats-placeholder"
+              class="not-visible"
+              title="Nothing here..."
+              >🥱</span
+            >
             <div id="stats-data" class="visible grid grid-flow-row">
-              <div  class="stats stats-vertical shadow">
+              <div class="stats stats-vertical shadow">
                 <div class="stat" id="stat-algorithm">
                   <div class="stat-title">Algorithm</div>
                   <div class="stat-value">N/A</div>
@@ -79,7 +116,7 @@
                 </div>
               </div>
             </div>
-          </ul>
+          </div>
         </div>
       </div>
     </main>
