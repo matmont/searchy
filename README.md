@@ -34,9 +34,8 @@ I want to gather here a kind of roadmap for the app. Feel free to open issues to
 
 - [ ] Add more algorithms
   - [ ] Genetic algorithms
-  - [ ] A\*
   - [ ] Dijkstra's algorithm
-- [x] Add more stats
+- [ ] Add more stats
   - [ ] Optimal solution?
 - [ ] Draw optimal solution(s)
 - [ ] Allows user to change starting player position
