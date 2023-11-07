@@ -13,11 +13,15 @@ self.onmessage = (e) => {
     } = startingSearchState;
     const frontier: FrontierNode[] = [
       {
-        cost: 0,
+        depth: 0,
         id: startingPlayerPosition!,
+        heuristic:
+          selectedAlgorithm === "A*"
+            ? manhattanDistance(startingPlayerPosition!, goalPosition!)
+            : 0,
       },
     ];
-    const visited = new Map<string, boolean>();
+    const visited = new Map<string, number>();
     let stepCounter = 0;
     let currentNode: FrontierNode | null = null;
     while (!!frontier.length) {
@@ -29,13 +33,22 @@ self.onmessage = (e) => {
         case "BFS":
           currentNode = frontier.shift()!;
           break;
+        case "A*":
+          currentNode = frontier
+            .sort((a, b) => {
+              return a.depth + a.heuristic - (b.depth + b.heuristic);
+            })
+            .shift()!;
+          break;
         default:
           break;
       }
       if (!currentNode) return;
-      const { id } = currentNode;
-      if (visited.get(id)) break;
-      visited.set(id, true);
+      const { id, depth, heuristic } = currentNode;
+      if (isVisitedBetter(id, depth + heuristic, visited)) {
+        continue;
+      }
+      visited.set(id, depth + heuristic);
       if (id === goalPosition) {
         steps.push({
           frontier,
@@ -67,41 +80,30 @@ self.onmessage = (e) => {
         switch (action) {
           case 0:
             targetNodeId = `${+row}@${+column - 1}`;
-            if (visited.get(targetNodeId) || walls?.get(targetNodeId)) break;
-            frontier.push({
-              id: targetNodeId,
-              cost: currentNode!.cost + 1,
-              parent: currentNode!,
-            });
+            if (walls?.get(targetNodeId)) return;
             break;
           case 1:
             targetNodeId = `${+row + 1}@${+column}`;
-            if (visited.get(targetNodeId) || walls?.get(targetNodeId)) break;
-            frontier.push({
-              id: targetNodeId,
-              cost: currentNode!.cost + 1,
-              parent: currentNode!,
-            });
+            if (walls?.get(targetNodeId)) return;
             break;
           case 2:
             targetNodeId = `${+row}@${+column + 1}`;
-            if (visited.get(targetNodeId) || walls?.get(targetNodeId)) break;
-            frontier.push({
-              id: targetNodeId,
-              cost: currentNode!.cost + 1,
-              parent: currentNode!,
-            });
+            if (walls?.get(targetNodeId)) return;
             break;
           case 3:
             targetNodeId = `${+row - 1}@${+column}`;
-            if (visited.get(targetNodeId) || walls?.get(targetNodeId)) break;
-            frontier.push({
-              id: targetNodeId,
-              cost: currentNode!.cost + 1,
-              parent: currentNode!,
-            });
+            if (walls?.get(targetNodeId)) return;
             break;
         }
+        frontier.push({
+          id: targetNodeId,
+          depth: currentNode!.depth + 1,
+          parent: currentNode!,
+          heuristic:
+            selectedAlgorithm === "A*"
+              ? manhattanDistance(targetNodeId, goalPosition!)
+              : 0,
+        });
       });
 
       steps.push({
@@ -134,4 +136,20 @@ const buildSolutionPath = (node: FrontierNode) => {
     parent = parent.parent;
   }
   return solution;
+};
+
+const manhattanDistance = (id_cell: string, id_goal: string) => {
+  const [row_a, col_a] = id_cell.split("@");
+  const [row_goal, col_goal] = id_goal.split("@");
+  return Math.abs(+row_a - +row_goal) + Math.abs(+col_a - +col_goal);
+};
+
+const isVisitedBetter = (
+  id: string,
+  cost: number,
+  visited: Map<string, number>
+) => {
+  if (typeof visited.get(id) == null) return false;
+  if (visited.get(id)! < cost) return true;
+  return false;
 };

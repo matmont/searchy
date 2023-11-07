@@ -18,12 +18,14 @@ export enum Actions {
 export enum Algorithms {
   DFS = "DFS",
   BFS = "BFS",
+  A_START = "A*",
 }
 
 export interface FrontierNode {
   id: string;
   parent?: FrontierNode;
-  cost: number;
+  depth: number;
+  heuristic: number;
 }
 
 export interface SearchState {
@@ -38,7 +40,7 @@ export interface SearchState {
   steps: {
     playerPosition: string;
     goalPosition: string;
-    visitedCells: Map<string, boolean>;
+    visitedCells: Map<string, number>;
     frontier: FrontierNode[];
   }[];
 }

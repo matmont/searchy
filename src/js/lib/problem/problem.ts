@@ -92,7 +92,6 @@ class Problem {
       };
       dispatch(Events.SEARCH_STARTED);
     } else {
-      console.log("WEWE");
       // TODO: implement an alternative strategy without WebWorker usage
     }
   }

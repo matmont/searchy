@@ -44,7 +44,6 @@ const initController = (problem: Problem): boolean => {
     const inputs = document
       .getElementById("controllers")
       ?.querySelectorAll("input, button, select");
-    console.log(inputs?.length);
     if (!inputs) return;
     for (let input of inputs) {
       input.setAttribute("disabled", "true");
@@ -64,7 +63,6 @@ const initController = (problem: Problem): boolean => {
   const algorithmSelector = document.getElementById(
     "algorithm-controller"
   ) as HTMLSelectElement;
-  console.log(algorithmSelector);
   Object.values(Algorithms).forEach((value) => {
     const algorithmOption = document.createElement("option");
     algorithmOption.text = value;
