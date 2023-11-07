@@ -41,3 +41,4 @@ I want to gather here a kind of roadmap for the app. Feel free to open issues to
 - [ ] Allows user to change starting player position
 - [ ] Allows for multiple goals
 - [ ] Add uncertainty/partial observability
+- [ ] Draw frontier at each step
