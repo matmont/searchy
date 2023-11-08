@@ -18,7 +18,7 @@
       <h1 class="text-2xl font-bold">🔎 Searchy</h1>
     </header>
     <main class="p-4">
-      <div id="grid"></div>
+      <div id="grid-container"><div id="grid"></div></div>
       <div id="sidebar" class="shadow-lg rounded-lg">
         <div id="controllers">
           <h3>Controllers</h3>
@@ -115,7 +115,25 @@
                   <div class="stat-value">N/A</div>
                 </div>
                 <div class="stat" id="stat-time">
-                  <div class="stat-title">Time</div>
+                  <div class="stat-title flex items-center gap-2">
+                    Time
+                    <div class="tooltip" data-tip="Computing time">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="w-4 h-4 cursor-pointer"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
                   <div class="stat-value">N/A</div>
                 </div>
               </div>

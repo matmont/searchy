@@ -77,5 +77,19 @@ const initController = (problem: Problem): boolean => {
       }
     };
   }
+
+  document.addEventListener("click", function (e) {
+    var target = e.target as HTMLElement;
+    const rgx = new RegExp("[0-9].*@[0-9].*", "g");
+    const isCell =
+      target.classList.contains("cell") &&
+      !target.classList.contains("wall") &&
+      !target.classList.contains("goal") &&
+      rgx.test(target.getAttribute("id") ?? "");
+    if (isCell) {
+      problem.playerCellId = target.getAttribute("id")!;
+    }
+  });
+
   return true;
 };

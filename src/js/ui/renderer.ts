@@ -21,7 +21,18 @@ class Renderer {
     const { numberOfColumns, numberOfRows } = this.problem.grid;
     const { playerCellId, goalCellId } = this.problem;
     this.gridDOM.textContent = "";
-    this.gridDOM.style.gridTemplateColumns = `repeat(${numberOfColumns}, 1fr)`;
+    const gridContainerRect =
+      this.gridDOM.parentElement?.getBoundingClientRect();
+    if (!gridContainerRect) return;
+    const widthOfColumns = Math.floor(
+      (gridContainerRect.width - 2 * numberOfColumns) / numberOfColumns
+    );
+    const heightOfRows = Math.floor(
+      (gridContainerRect.height - 2 * numberOfRows) / numberOfRows
+    );
+    const selectedCellSize = Math.min(widthOfColumns, heightOfRows);
+    this.gridDOM.style.gridTemplateColumns = `repeat(${numberOfColumns}, ${selectedCellSize}px)`;
+    this.gridDOM.style.gridTemplateRows = `repeat(${numberOfRows}, ${selectedCellSize}px)`;
     for (let i = 0; i < numberOfRows; i++) {
       for (let j = 0; j < numberOfColumns; j++) {
         const cell = document.createElement("div");
@@ -127,11 +138,21 @@ class Renderer {
       this.problem.searchState.steps.length.toString();
     const timeStats = document.getElementById("stat-time");
     timeStats!.querySelector(".stat-value")!.textContent =
-      `${(this.problem.searchState.elapsedTime! / 1000).toFixed(2)}s` ?? "N/A";
+      this.formatElapsedTime(this.problem.searchState.elapsedTime);
     document.getElementById("stats-data")?.classList.remove("not-visible");
     document
       .getElementById("empty-stats-placeholder")
       ?.classList.add("not-visible");
+  };
+
+  private formatElapsedTime = (elapsedTime?: number) => {
+    if (elapsedTime == undefined) {
+      return `N/A`;
+    }
+    if (elapsedTime < 1000) {
+      return `${elapsedTime}ms`;
+    }
+    return `${(this.problem.searchState.elapsedTime! / 1000).toFixed(2)}s`;
   };
 }
 

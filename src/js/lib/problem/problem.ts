@@ -25,6 +25,11 @@ class Problem {
     return this._playerCellId;
   }
 
+  set playerCellId(newCellId: string | undefined) {
+    this._playerCellId = newCellId;
+    dispatch(Events.GRID_CHANGED);
+  }
+
   get grid() {
     return this._grid;
   }
