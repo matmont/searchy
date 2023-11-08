@@ -51,7 +51,7 @@ self.onmessage = (e) => {
       visited.set(id, depth + heuristic);
       if (id === goalPosition) {
         steps.push({
-          frontier,
+          frontier: [...frontier],
           visitedCells: new Map(visited),
           playerPosition: currentNode.id,
           goalPosition: goalPosition!,
@@ -107,7 +107,7 @@ self.onmessage = (e) => {
       });
 
       steps.push({
-        frontier,
+        frontier: [...frontier],
         visitedCells: new Map(visited),
         playerPosition: currentNode.id,
         goalPosition: goalPosition!,

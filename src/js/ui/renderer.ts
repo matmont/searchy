@@ -79,14 +79,16 @@ class Renderer {
         const children = gridDom.childNodes;
         for (var i = 0; i < children.length; i++) {
           if (children[i].nodeType === Node.ELEMENT_NODE) {
-            // nodeType 3 is a text node
             const childNode = children[i] as HTMLElement;
             const cellId = childNode.getAttribute("id");
             childNode.classList.remove("player");
             childNode.classList.remove("visited");
             childNode.classList.remove("solution");
+            childNode.classList.remove("frontier");
             if (!cellId) return;
-
+            if (currentStep.frontier.find((item) => item.id === cellId)) {
+              childNode.classList.add("frontier");
+            }
             if (currentStep.playerPosition === cellId) {
               childNode.classList.add("player");
             }
