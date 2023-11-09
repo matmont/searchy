@@ -150,9 +150,9 @@ class Renderer {
       return `N/A`;
     }
     if (elapsedTime < 1000) {
-      return `${elapsedTime}ms`;
+      return `${elapsedTime.toFixed(0)}ms`;
     }
-    return `${(this.problem.searchState.elapsedTime! / 1000).toFixed(2)}s`;
+    return `${(elapsedTime / 1000).toFixed(2)}s`;
   };
 }
 
